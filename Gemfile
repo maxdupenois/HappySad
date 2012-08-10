@@ -6,3 +6,4 @@ gem 'mongoid', "2.0.2"
 gem 'scrapi', "2.0.0"
 gem 'thin' 
 gem 'tidy_ffi', "0.1.4"
+gem 'tidy'
