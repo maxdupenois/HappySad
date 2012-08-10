@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
-
+require 'dl/import'
+DL::Importable = DL::Importer
 Bundler.require
 
 # require 'mongo'
