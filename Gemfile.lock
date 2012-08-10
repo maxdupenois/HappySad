@@ -22,6 +22,7 @@ GEM
       mongo (~> 1.3)
       tzinfo (~> 0.3.22)
     multi_json (1.3.6)
+    nokogiri (1.5.5)
     rack (1.4.1)
     scrapi (2.0.0)
       tidy_ffi (>= 0.1.2)
@@ -41,6 +42,7 @@ DEPENDENCIES
   haml (= 3.1.2)
   json (= 1.5.3)
   mongoid (= 2.0.2)
+  nokogiri
   scrapi (= 2.0.0)
   sinatra (= 1.2.6)
   tidy_ffi (= 0.1.4)

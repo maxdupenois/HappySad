@@ -5,6 +5,7 @@ gem 'sinatra', "1.2.6"
 gem 'mongoid', "2.0.2"
 gem 'scrapi', "2.0.0"
 gem "bson_ext"
+gem "nokogiri"
 # gem 'ffi', "1.1.5"
 gem 'tidy_ffi', "0.1.4"
 # gem 'tidy'

@@ -3,7 +3,6 @@ require 'bundler/setup'
 # require 'dl/import'
 # DL::Importable = DL::Importer
 Bundler.require
-TidyFFI.library_path = File.join(File.dirname(__FILE__), *%w[lib/libtidy.so])
 
 # require 'mongo'
 # 
