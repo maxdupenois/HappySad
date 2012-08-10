@@ -1,0 +1,20 @@
+!!! Strict
+%html{:xmlns=>"http://www.w3.org/1999/xhtml", :'xml:lang'=>"en", :lang=>"en"}
+  %head
+    %meta{:"http-equiv"=>"content-type",:content=>"text/html; charset=utf-8"}
+    %title Happy Sad
+%body
+  %form{:method=>"post", :action=>"/"}
+    %input{:type=>"text", :name=>"website"}
+    %input{:type=>"submit", :value=>"Happy or Sad?"}
+  -if(!@score.nil?)
+    -if(@score > 0)
+      %h2="That is a happy page"
+    -elsif(@score < 0)
+      %h2="That is a sad page"
+    -else
+      %h2="That page is emotionless, like Christian Bale in Psycho"
+  -if(!@err.nil?)
+    %h2
+      Could Not Scrape:
+      %span{:class=>"error"}="#{@err}"
