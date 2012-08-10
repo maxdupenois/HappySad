@@ -2,21 +2,26 @@
 %html{:xmlns=>"http://www.w3.org/1999/xhtml", :'xml:lang'=>"en", :lang=>"en"}
   %head
     %meta{:"http-equiv"=>"content-type",:content=>"text/html; charset=utf-8"}
-    %title Happy Sad
+    %title Happy or Sad
+    %link{:rel=>"stylesheet", :type=>"text/css", :href=>"/css/main.css", :media=>"screen, projection"}
 %body
+  %h1="Happy page / Sad page?"
   %form{:method=>"post", :action=>"/"}
     %input{:type=>"text", :name=>"website"}
     %input{:type=>"submit", :value=>"Happy or Sad?"}
   -if(!@score.nil?)
     -if(@score > 0)
-      %h2="That is a happy page"
-      %img{:src=>"https://secure.gravatar.com/avatar/b602fd142de81da3d9ebea634b7c21f0?s=140&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png&s=200", :alt=>"Almost too happy"}
+      %h2="This, this is a happy page"
+      %h3="... almost too happy" if(@score > 10)
+      %img{:src=>"/img/happy-nick-cage.jpg", :title=>"Nick cage is pleased"}
     -elsif(@score < 0)
-      %h2="That is a sad page"
-      %img{:src=>"https://secure.gravatar.com/avatar/5dfea79f5bd30ca47e7e5260202358b3?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png&s=200", :alt=>"The sorrow"}
+      %h2="This poor page is sad, give it a hug."
+      %h3="That was too hard, you've hurt it."
+      %h4="How could you?"
+      %img{:src=>"/img/sad-nick-cage.jpg", :title=>"Nick cage is disappointed"}
     -else
-      %h2="That page is emotionless, like Christian Bale in Psycho"
-      %img{:src=>"https://secure.gravatar.com/avatar/3aa708adb3ecf15173f7e6f2f9eefc6c?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png&s=200", :alt=>"Terrifying"}
+      %h2="This page is emotionless, cold like a polar bears nipple"
+      %img{:src=>"/img/emotionless-nick-cage.jpg", :title=>"Nick cage is nonplussed"}
   -if(!@err.nil?)
     %h2
       Could Not Scrape:

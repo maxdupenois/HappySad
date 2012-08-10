@@ -48,15 +48,8 @@ class PageScraper
   end
   def process_section(section, multiplier)
     current = 0
-    # puts section
-    section.each do |part| 
-      # part.each {|p| puts p}
-      part.split(" ").each do |w| 
-        w = w.clean_stem
-        sc =  word_score(w)
-        current +=sc
-      end
-    end
+    
+    section.each {|part| part.split(" ").each { |w| current += word_score(w.clean_stem)}}
     
     multiplier*current
   end
@@ -64,7 +57,6 @@ class PageScraper
     current = 0
     return current if(contents.nil?)
     current += process_section(contents[:content], 1) if(!contents[:content].nil?)
-    puts "Done content"
     current += process_section(contents[:highlighted], 2)  if(!contents[:highlighted].nil?)
     current += process_section(contents[:headline], 3)  if(!contents[:headline].nil?)
     current
@@ -81,20 +73,6 @@ class Scrapers
     headline = doc.css('h1,h2,h3').map{|t| remove_tags(t)}
     return {:content=>content, :highlighted=>highlighted, :headline=>headline}
   end
-  # def self.default
-  #     Scraper.define do
-  #       array :content
-  #       array :highlighted
-  #       array :headline
-  #       process "p", :content=>:text
-  #       process "b", :highlighted=>:text
-  #       process "i", :highlighted=>:text
-  #       process "emph", :highlighted=>:text
-  #       process "strong", :highlighted=>:text
-  #       process "h1,h2,h3", :headline=>:text
-  #       result :content, :headline, :highlighted
-  #     end
-  #   end
 end
 
 if __FILE__ == $0

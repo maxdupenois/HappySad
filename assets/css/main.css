@@ -1,0 +1,30 @@
+html{
+    width:100%;
+    margin:0px;
+    background-color:#eee;
+    font-family: georgia;
+}
+body{
+    margin:9px;
+    background-color:#fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align:center;
+    }
+form{
+    text-align:center;
+}
+
+h1,h2,h3,h4{
+    text-align: center;
+}
+h2,h3,h4{
+    color: #666;
+    font-family: arial;
+}
+
+img{
+    padding: 4px;
+    border: 1px solid #ccc;
+    background-color:#eee;
+}
