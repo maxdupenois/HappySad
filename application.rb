@@ -29,5 +29,6 @@ post "/" do
   @err = err
   sentiment_scorer = SentimentScorer.new(page)
   @score, @word_to_score = sentiment_scorer.score
+  @page_url = ps.website
   haml :index
 end

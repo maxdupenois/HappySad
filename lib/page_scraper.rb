@@ -5,7 +5,7 @@ require 'nokogiri'
 
 
 class PageScraper
-  
+  attr_reader :website
   def initialize(website)
     website = "http://#{website}" if(not website =~ /^http.*/)
     @website = website

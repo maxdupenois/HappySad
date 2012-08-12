@@ -11,6 +11,8 @@
     %input{:type=>"text", :name=>"website"}
     %input{:type=>"submit", :value=>"Happy or Sad?"}
   -if(!@score.nil?)
+    %h2
+      %a{:href=>@page_url, :title=>@page_url, :target=>"_blank"}=@page_url
     -if(@score > 0)
       %h2="This, this is a happy page"
       %h3="... almost too happy" if(@score > 10)
