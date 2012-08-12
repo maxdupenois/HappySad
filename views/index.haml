@@ -4,6 +4,7 @@
     %meta{:"http-equiv"=>"content-type",:content=>"text/html; charset=utf-8"}
     %title Happy or Sad
     %link{:rel=>"stylesheet", :type=>"text/css", :href=>"/css/main.css", :media=>"screen, projection"}
+    %script{:type=>"text/javascript", :language=>"JavaScript", :src=>"/js/show_hide_tbl.js"}
 %body
   %h1="Happy page / Sad page?"
   %form{:method=>"post", :action=>"/"}
@@ -13,16 +14,33 @@
     -if(@score > 0)
       %h2="This, this is a happy page"
       %h3="... almost too happy" if(@score > 10)
-      %img{:src=>"/img/happy-nick-cage.jpg", :title=>"Nick cage is pleased"}
+      %img{:src=>"/img/happy-nick-cage.jpg", :title=>"Nick cage is pleased", :alt=>"Nick cage is pleased"}
     -elsif(@score < 0)
       %h2="This poor page is sad, give it a hug."
       %h3="That was too hard, you've hurt it."
       %h4="How could you?"
-      %img{:src=>"/img/sad-nick-cage.jpg", :title=>"Nick cage is disappointed"}
+      %img{:src=>"/img/sad-nick-cage.jpg", :title=>"Nick cage is disappointed", :alt=>"Nick cage is disappointed"}
     -else
       %h2="This page is emotionless, cold like a polar bears nipple"
-      %img{:src=>"/img/emotionless-nick-cage.jpg", :title=>"Nick cage is nonplussed"}
+      %img{:src=>"/img/emotionless-nick-cage.jpg", :title=>"Nick cage is nonplussed", :alt=>"Nick cage is nonplussed"}
+  -if(!@word_to_score.nil?)
+    %hr
+    %a{:href=>"javascript:tbl_switch();", :title=>"Show why", :id=>"swtch_why"}="Why?"
+    %table{:style=>"display:none;visibility:hidden;", :id=>"tbl_why"}
+      %thead
+        %tr
+          %th="Stemmed Word"
+          %th="Score"
+      %tbody
+        -@word_to_score.keys.each do |k|
+          %tr
+            %td=k
+            %td=@word_to_score[k]
+        %tr
+          %td{:class=>"td_total"}="Total"
+          %td{:class=>"td_total"}=@score
   -if(!@err.nil?)
     %h2
       Could Not Scrape:
       %span{:class=>"error"}="#{@err}"
+    

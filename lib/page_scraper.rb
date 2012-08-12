@@ -1,37 +1,13 @@
 #!/usr/bin/env ruby
-require 'set'
 require 'open-uri'
 require 'nokogiri'
 
-require File.join(File.dirname(__FILE__), *%w[porter_stemmer])
 
-def read_emotive_word_file(file)
-  words = []
-  File.open(File.join(File.dirname(__FILE__), file), "r") do |infile|
-    w=nil
-    words << w.strip while(w = infile.gets) 
-  end
-  words
-end
-
-HAPPY = Set.new read_emotive_word_file("happy_words.txt")
-HAPPY.map! {|w| w.stem}
-SAD = Set.new read_emotive_word_file("sad_words.txt")
-SAD.map! {|w| w.stem}
-
-class String
-  def clean_stem
-    w = self.strip
-    w.gsub!(/[^a-zA-Z]*/, "")
-    w = w.stem
-    w.downcase!
-    w
-  end
-end
 
 class PageScraper
   
   def initialize(website)
+    website = "http://#{website}" if(not website =~ /^http.*/)
     @website = website
   end
   
@@ -41,26 +17,7 @@ class PageScraper
     return nil if(page.nil?)
     Scrapers.default(Nokogiri::HTML(page))
   end
-  def word_score(w)
-    return 1 if(HAPPY.include?(w))
-    return -1 if(SAD.include?(w))
-    return 0
-  end
-  def process_section(section, multiplier)
-    current = 0
-    
-    section.each {|part| part.split(" ").each { |w| current += word_score(w.clean_stem)}}
-    
-    multiplier*current
-  end
-  def score(contents)
-    current = 0
-    return current if(contents.nil?)
-    current += process_section(contents[:content], 1) if(!contents[:content].nil?)
-    current += process_section(contents[:highlighted], 2)  if(!contents[:highlighted].nil?)
-    current += process_section(contents[:headline], 3)  if(!contents[:headline].nil?)
-    current
-  end
+
 end
 
 class Scrapers
@@ -78,6 +35,5 @@ end
 if __FILE__ == $0
   ps = PageScraper.new("http://www.wikihow.com/Be-Happy")
   contents = ps.scrape
-  score = ps.score(contents)
-  puts score
+  puts contents 
 end

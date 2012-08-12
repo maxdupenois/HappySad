@@ -128,12 +128,14 @@ aching
 grieved
 shaky
 victimized
+victimised
 mournful
 restless
 heartbroken
 dismayed
 doubtful
 agonized
+agonised
 threatened
 appalled
 cowardly
@@ -143,3 +145,8 @@ wronged
 menaced
 alienated
 wary
+murder
+death
+dead
+error
+arrested
