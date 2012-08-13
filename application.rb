@@ -28,7 +28,10 @@ post "/" do
   end
   @err = err
   sentiment_scorer = SentimentScorer.new(page)
-  @score, @word_to_score = sentiment_scorer.score
+  @score, @word_to_score, @word_count = sentiment_scorer.score
+  @normalised_score = 0
+  @normalised_score = @score/Float(@word_count) if(@word_count > 0)
+  # puts "Word Count #{@word_count}, #{@score/Float(@word_count)} #{@normalised_score}"
   @page_url = ps.website
   haml :index
 end
