@@ -85,3 +85,11 @@ div.sentiment_bar .sentiment_marker{
     top: -3px;
     color: #fff;
 }
+
+a.img_swtch{
+    display:block;
+    float: right;
+    text-align:right;
+    font-size: 10px;
+    clear:right;
+}

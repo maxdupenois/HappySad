@@ -6,6 +6,10 @@
     %link{:rel=>"stylesheet", :type=>"text/css", :href=>"/css/main.css", :media=>"screen, projection"}
     %script{:type=>"text/javascript", :language=>"JavaScript", :src=>"/js/show_hide_tbl.js"}
 %body
+  -if(@imgtype=="nick")
+    %a{:class=>"img_swtch", :title=>"Use Forward Images", :href=>"/swtchimg"}="Forward"
+  -else
+    %a{:class=>"img_swtch", :title=>"Use Nicholas Cage", :href=>"/swtchimg"}="Nicholas Cage"
   %h1="Happy page / Sad page?"
   %form{:method=>"post", :action=>"/"}
     %input{:type=>"text", :name=>"website"}
@@ -16,19 +20,31 @@
     -if(@normalised_score  > 0.1)
       %h2="This, this is a happy page"
       %h3="... almost too happy" if(@normalised_score > 0.5)
-      %img{:src=>"/img/happy-nick-cage.jpg", :title=>"Nick cage is pleased", :alt=>"Nick cage is pleased"}
+      -if(@imgtype=="nick")
+        %img{:src=>"/img/happy-nick-cage.jpg", :title=>"Nick cage is pleased", :alt=>"Nick cage is pleased"}
+      -else
+        %img{:src=>"https://secure.gravatar.com/avatar/b602fd142de81da3d9ebea634b7c21f0?s=140&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png&s=200", 
+        :title=>"Shell is amused by your tomfoolery", :alt=>"Shell is amused by your tomfoolery"}
     -elsif(@normalised_score  < -0.1)
       %h2="This poor page is sad, give it a hug."
       -if(@normalised_score < -0.5)
         %h3="That was too hard, you've hurt it."
         %h4="How could you?"
-      %img{:src=>"/img/sad-nick-cage.jpg", :title=>"Nick cage is disappointed", :alt=>"Nick cage is disappointed"}
+      -if(@imgtype=="nick")
+        %img{:src=>"/img/sad-nick-cage.jpg", :title=>"Nick cage is disappointed", :alt=>"Nick cage is disappointed"}
+      -else
+        %img{:src=>"https://secure.gravatar.com/avatar/4605adbcd13e20c14e82fcf528b516e6?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png&s=200", 
+        :title=>"Mauro does not approve of this chicanery", :alt=>"Mauro does not approve of this chicanery"}
     -else
       %h2="This page is emotionless, cold like a polar bears nipple"
       -if(@word_count==0)
         %h3="Also, it doesn't exist"
         %h4="(Coming soon from M. Night Shyamalan)"
-      %img{:src=>"/img/emotionless-nick-cage.jpg", :title=>"Nick cage is nonplussed", :alt=>"Nick cage is nonplussed"}
+      -if(@imgtype=="nick")
+        %img{:src=>"/img/emotionless-nick-cage.jpg", :title=>"Nick cage is nonplussed", :alt=>"Nick cage is nonplussed"}
+      -else
+        %img{:src=>"https://secure.gravatar.com/avatar/3aa708adb3ecf15173f7e6f2f9eefc6c?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png&s=200", 
+        :title=>"Paul is sorely unimpressed", :alt=>"Paul is sorely unimpressed"}
     %div{:class=>"sentiment_bar left_to_right"}
       %div{:class=>"sentiment_bar right_to_left"}
         %span{:class=>"sentiment_marker", :style=>"left:#{Integer(((@normalised_score + 1)/2.0)*400)}px;"}="&nbsp;"
