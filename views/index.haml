@@ -7,14 +7,25 @@
     %script{:type=>"text/javascript", :language=>"JavaScript", :src=>"/js/jquery-1.8.0.js"}
     %script{:type=>"text/javascript", :language=>"JavaScript", :src=>"/js/main.js"}
 %body
-  -if(@imgtype=="nick")
-    %a{:class=>"img_swtch", :title=>"Use Forward Images", :href=>"/swtchimg"}="Forward"
-  -else
-    %a{:class=>"img_swtch", :title=>"Use Nicholas Cage", :href=>"/swtchimg"}="Nicholas Cage"
-  %h1="Happy page / Sad page?"
-  %form{:method=>"post", :action=>"/", :name=>"frm_happysad", :id=>"frm_happysad"}
-    %input{:type=>"text", :name=>"website"}
-    %input{:type=>"submit", :value=>"Happy or Sad?"}
-  -if(!@score.nil?)
-    = haml :display_sentiment
+  %div#page
+    %div#head_spacer
+    %div#contents
+      -if(@imgtype=="nick")
+        %a.img_swtch{:title=>"Use Forward Images", :href=>"/swtchimg"}="Forward"
+      -else
+        %a.img_swtch{:title=>"Use Nicholas Cage", :href=>"/swtchimg"}="Nicholas Cage"
+      %h1="Happy page / Sad page?"
+      %form#frm_happysad{:method=>"post", :action=>"/", :name=>"frm_happysad"}
+        %input{:type=>"text", :name=>"website"}
+        %input{:type=>"submit", :value=>"Happy or Sad?"}
+      -if(!@score.nil?)
+        = haml :display_sentiment
+    %div#push
+  %div#footer
+    %span
+      &copy Dupenois 2012,
+      %a{:href=>"https://github.com/maxdupenois/HappySad", :title=>"Git Repo."}
+        Git
+        %img{:src=>"/img/github-icon.jpg", :style=>"height:16px;width:16px;", :alt=>"Git Repo."}
+  %div#footer_spacer
     

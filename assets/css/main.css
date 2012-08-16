@@ -1,17 +1,53 @@
-html{
-    width:100%;
+/** {margin:0; padding:0;}*/
+html, body{
+    width: 100%;
+    height: 100%;
     margin:0px;
-    background-color:#eee;
+    padding:0px;
+    background-color: #eee;
     font-family: georgia;
     font-size: 11pt;
 }
-body{
-    margin:9px;
+#page{
+    height:100%;
+    margin: 0px 9px -40px 9px;
+/*    margin-bottom: -40px;*/
     background-color:#fff;
-    border: 1px solid #ccc;
-    padding: 10px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    
+    min-height: 100%; 
+    height: auto !important;
+}
+#contents{
     text-align:center;
-    }
+    padding: 10px;
+}
+#head_spacer{
+    background-color: #eee;
+    height: 9px;
+    margin: 0px -1px 0px -1px;
+    border-bottom: 1px solid #ccc;
+}
+#footer_spacer{
+    background-color: #eee;
+    height: 9px;
+    border-top: 1px solid #ccc;
+    margin: 0px 9px 0px 9px;
+}
+#footer, #push {height:30px;}
+#footer{
+    margin: 0px 9px 0px 9px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    text-align: right;
+    background-color:#fff;
+}
+#footer span{
+    padding: 0px 10px 0px 0px;
+    font-size: 10pt;
+    color: #666;
+}
 form{
     text-align:center;
 }
@@ -53,7 +89,9 @@ h2,h3,h4{
     color: #666;
     font-family: arial;
 }
-
+img{
+    border: none;
+}
 img.img_reaction{
     padding: 4px;
     border: 1px solid #ccc;
