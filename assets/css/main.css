@@ -54,7 +54,7 @@ h2,h3,h4{
     font-family: arial;
 }
 
-img{
+img.img_reaction{
     padding: 4px;
     border: 1px solid #ccc;
     background-color:#eee;

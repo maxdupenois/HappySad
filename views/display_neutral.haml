@@ -1,0 +1,12 @@
+%h2="This page is emotionless"
+%h3="Cold like a seal's upper-left nipple"
+-if(@word_count==0)
+  %h3="Also, it doesn't exist"
+  %h4="(Coming soon from M. Night Shyamalan)"
+-if(@imgtype=="nick")
+  %img{:src=>"/img/emotionless-nick-cage.jpg", :title=>"Nick cage is nonplussed", :alt=>"Nick cage is nonplussed",
+  :class=>"img_reaction"}
+-else
+  %img{:src=>"https://secure.gravatar.com/avatar/3aa708adb3ecf15173f7e6f2f9eefc6c?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png&s=200", 
+  :title=>"Paul is sorely unimpressed", :alt=>"Paul is sorely unimpressed",
+  :class=>"img_reaction"}

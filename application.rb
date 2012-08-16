@@ -29,22 +29,45 @@ get "/" do
   haml :index
 end
 
-
-post "/" do 
-  website = params['website']
-  ps = PageScraper.new(website)
-  @err = nil
+def process_webpage(page_url)
+  ps = PageScraper.new(page_url)
+  err = nil
   page = begin
     ps.scrape 
   rescue StandardError => err 
     nil
   end
-  @err = err
+  err = err
   sentiment_scorer = SentimentScorer.new(page)
-  @score, @word_to_score, @word_count = sentiment_scorer.score
-  @normalised_score = 0
-  @normalised_score = @score/Float(@word_count) if(@word_count > 0)
-  # puts "Word Count #{@word_count}, #{@score/Float(@word_count)} #{@normalised_score}"
-  @page_url = ps.website
+  score, word_to_score, word_count = sentiment_scorer.score
+  normalised_score = 0
+  normalised_score = score/Float(word_count) if(word_count > 0)
+  {:score=>score, :word_to_score=>word_to_score, 
+    :word_count=>word_count, :normalised_score=>normalised_score, 
+    :page_url=>ps.website, :err=>err}
+end
+
+post "/asynch" do
+  website = params['website']
+  res = process_webpage(website)
+  @score = res[:score]
+  @word_to_score = res[:word_to_score]
+  @word_count = res[:word_count]
+  @normalised_score = res[:normalised_score]
+  @page_url = res[:page_url]
+  @err = res[:err]
+  haml :display_sentiment
+end
+
+post "/" do 
+  website = params['website']
+  res = process_webpage(website)
+  
+  @score = res[:score]
+  @word_to_score = res[:word_to_score]
+  @word_count = res[:word_count]
+  @normalised_score = res[:normalised_score]
+  @page_url = res[:page_url]
+  @err = res[:err]
   haml :index
 end

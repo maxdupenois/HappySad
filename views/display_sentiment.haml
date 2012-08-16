@@ -1,0 +1,18 @@
+%div#sentiment
+  %h2
+    %a{:href=>@page_url, :title=>@page_url, :target=>"_blank"}=@page_url
+  -if(@normalised_score  > 0.1)
+    = haml :display_happy
+  -elsif(@normalised_score  < -0.1)
+    = haml :display_sad
+  -else
+    = haml :display_neutral
+  
+  = haml :display_sentiment_bar
+  
+  -if(!@word_to_score.nil? && @word_count > 0)
+    = haml :display_why
+  -if(!@err.nil?)
+    %h2
+      Could Not Scrape:
+      %span{:class=>"error"}="#{@err}"

@@ -1,0 +1,10 @@
+%h2="This, this is a happy page"
+%h3="... almost too happy" if(@normalised_score > 0.5)
+-if(@imgtype=="nick")
+  %img{:src=>"/img/happy-nick-cage.jpg", :title=>"Nick cage is pleased", :alt=>"Nick cage is pleased",
+  :class=>"img_reaction"}
+-else
+  %img{:src=>"https://secure.gravatar.com/avatar/b602fd142de81da3d9ebea634b7c21f0?s=140&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png&s=200", 
+  :title=>"Shell is amused by your tomfoolery", 
+  :alt=>"Shell is amused by your tomfoolery",
+  :class=>"img_reaction"}

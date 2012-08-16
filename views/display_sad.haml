@@ -1,0 +1,11 @@
+%h2="This poor page is sad, give it a hug."
+-if(@normalised_score < -0.5)
+  %h3="That was too hard, you've hurt it."
+  %h4="How could you?"
+-if(@imgtype=="nick")
+  %img{:src=>"/img/sad-nick-cage.jpg", :title=>"Nick cage is disappointed", :alt=>"Nick cage is disappointed",
+  :class=>"img_reaction"}
+-else
+  %img{:src=>"https://secure.gravatar.com/avatar/4605adbcd13e20c14e82fcf528b516e6?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png&s=200", 
+  :title=>"Mauro does not approve of this chicanery", :alt=>"Mauro does not approve of this chicanery",
+  :class=>"img_reaction"}

@@ -1,0 +1,21 @@
+%hr
+%a{:href=>"#", :title=>"Show why", :id=>"swtch_why"}="Why?"
+%table{:style=>"display:none;visibility:hidden;", :id=>"tbl_why"}
+  %thead
+    %tr
+      %th="Stemmed Word"
+      %th="Score"
+  %tbody
+    -@word_to_score.keys.each do |k|
+      %tr
+        %td=k
+        %td=@word_to_score[k]
+    %tr
+      %td{:class=>"td_total"}="Total"
+      %td{:class=>"td_total"}=@score
+    %tr
+      %td{:class=>"td_total"}="Weighted Sentiment Word Count"
+      %td{:class=>"td_total"}=@word_count
+    %tr
+      %td{:style=>"font-weight:bold;"}="Normalised"
+      %td{:style=>"font-weight:bold;"}=@normalised_score

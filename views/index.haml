@@ -4,75 +4,17 @@
     %meta{:"http-equiv"=>"content-type",:content=>"text/html; charset=utf-8"}
     %title Happy or Sad
     %link{:rel=>"stylesheet", :type=>"text/css", :href=>"/css/main.css", :media=>"screen, projection"}
-    %script{:type=>"text/javascript", :language=>"JavaScript", :src=>"/js/show_hide_tbl.js"}
+    %script{:type=>"text/javascript", :language=>"JavaScript", :src=>"/js/jquery-1.8.0.js"}
+    %script{:type=>"text/javascript", :language=>"JavaScript", :src=>"/js/main.js"}
 %body
   -if(@imgtype=="nick")
     %a{:class=>"img_swtch", :title=>"Use Forward Images", :href=>"/swtchimg"}="Forward"
   -else
     %a{:class=>"img_swtch", :title=>"Use Nicholas Cage", :href=>"/swtchimg"}="Nicholas Cage"
   %h1="Happy page / Sad page?"
-  %form{:method=>"post", :action=>"/"}
+  %form{:method=>"post", :action=>"/", :name=>"frm_happysad", :id=>"frm_happysad"}
     %input{:type=>"text", :name=>"website"}
     %input{:type=>"submit", :value=>"Happy or Sad?"}
   -if(!@score.nil?)
-    %h2
-      %a{:href=>@page_url, :title=>@page_url, :target=>"_blank"}=@page_url
-    -if(@normalised_score  > 0.1)
-      %h2="This, this is a happy page"
-      %h3="... almost too happy" if(@normalised_score > 0.5)
-      -if(@imgtype=="nick")
-        %img{:src=>"/img/happy-nick-cage.jpg", :title=>"Nick cage is pleased", :alt=>"Nick cage is pleased"}
-      -else
-        %img{:src=>"https://secure.gravatar.com/avatar/b602fd142de81da3d9ebea634b7c21f0?s=140&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png&s=200", 
-        :title=>"Shell is amused by your tomfoolery", :alt=>"Shell is amused by your tomfoolery"}
-    -elsif(@normalised_score  < -0.1)
-      %h2="This poor page is sad, give it a hug."
-      -if(@normalised_score < -0.5)
-        %h3="That was too hard, you've hurt it."
-        %h4="How could you?"
-      -if(@imgtype=="nick")
-        %img{:src=>"/img/sad-nick-cage.jpg", :title=>"Nick cage is disappointed", :alt=>"Nick cage is disappointed"}
-      -else
-        %img{:src=>"https://secure.gravatar.com/avatar/4605adbcd13e20c14e82fcf528b516e6?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png&s=200", 
-        :title=>"Mauro does not approve of this chicanery", :alt=>"Mauro does not approve of this chicanery"}
-    -else
-      %h2="This page is emotionless"
-      %h3="Cold like a seal's upper-left nipple"
-      -if(@word_count==0)
-        %h3="Also, it doesn't exist"
-        %h4="(Coming soon from M. Night Shyamalan)"
-      -if(@imgtype=="nick")
-        %img{:src=>"/img/emotionless-nick-cage.jpg", :title=>"Nick cage is nonplussed", :alt=>"Nick cage is nonplussed"}
-      -else
-        %img{:src=>"https://secure.gravatar.com/avatar/3aa708adb3ecf15173f7e6f2f9eefc6c?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png&s=200", 
-        :title=>"Paul is sorely unimpressed", :alt=>"Paul is sorely unimpressed"}
-    %div{:class=>"sentiment_bar left_to_right"}
-      %div{:class=>"sentiment_bar right_to_left"}
-        %span{:class=>"sentiment_marker", :style=>"left:#{Integer(((@normalised_score + 1)/2.0)*400)}px;"}="&nbsp;"
-  -if(!@word_to_score.nil? && @word_count > 0)
-    %hr
-    %a{:href=>"javascript:tbl_switch();", :title=>"Show why", :id=>"swtch_why"}="Why?"
-    %table{:style=>"display:none;visibility:hidden;", :id=>"tbl_why"}
-      %thead
-        %tr
-          %th="Stemmed Word"
-          %th="Score"
-      %tbody
-        -@word_to_score.keys.each do |k|
-          %tr
-            %td=k
-            %td=@word_to_score[k]
-        %tr
-          %td{:class=>"td_total"}="Total"
-          %td{:class=>"td_total"}=@score
-        %tr
-          %td{:class=>"td_total"}="Weighted Sentiment Word Count"
-          %td{:class=>"td_total"}=@word_count
-        %tr
-          %td{:style=>"font-weight:bold;"}="Normalised"
-          %td{:style=>"font-weight:bold;"}=@normalised_score
-  -if(!@err.nil?)
-    %h2
-      Could Not Scrape:
-      %span{:class=>"error"}="#{@err}"
+    = haml :display_sentiment
     
