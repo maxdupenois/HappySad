@@ -23,7 +23,7 @@ GEM
       tzinfo (~> 0.3.22)
     multi_json (1.3.6)
     nokogiri (1.5.5)
-    rack (1.4.1)
+    rack (1.6.12)
     scrapi (2.0.0)
       tidy_ffi (>= 0.1.2)
     sinatra (1.2.6)
