@@ -1,5 +1,5 @@
 source "http://rubygems.org"
-gem "json", "1.5.3"
+gem "json", "2.3.0"
 gem 'haml', "3.1.2"
 gem 'sinatra', "1.2.6"
 gem 'mongoid', "2.0.2"

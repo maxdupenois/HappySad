@@ -14,7 +14,7 @@ GEM
     ffi (1.1.5)
     haml (3.1.2)
     i18n (0.6.0)
-    json (1.5.3)
+    json (2.3.0)
     mongo (1.6.4)
       bson (~> 1.6.4)
     mongoid (2.0.2)
@@ -40,7 +40,7 @@ PLATFORMS
 DEPENDENCIES
   bson_ext
   haml (= 3.1.2)
-  json (= 1.5.3)
+  json (= 2.3.0)
   mongoid (= 2.0.2)
   nokogiri
   scrapi (= 2.0.0)
